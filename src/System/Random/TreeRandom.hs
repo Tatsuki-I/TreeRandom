@@ -7,6 +7,7 @@ import Control.Parallel.Strategies
 import Data.Maybe (fromJust)
 import System.IO
 import Data.Function ((&))
+import Data.List.Split
 
 data BTree a
     = Leaf
@@ -89,5 +90,5 @@ getElem (Node e t1 t2) =  (Just e, [t1, t2])
 xorshift :: Word8 -> Word8
 xorshift = undefined
 
-writeTR i s =  writeFile "result.txt" res
-               where res = show $ toList (ptr i s) i
+writeTR i s =  writeFile ("result_" ++ show i ++ ".csv") res
+               where res = unlines $ splitOn "," $ init $ tail $ show $ toList (ptr i s) i
