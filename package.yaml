@@ -1,0 +1,76 @@
+name:                TreeRandom
+version:             0.1.0.0
+github:              "Tatsuki-I/TreeRandom"
+license:             BSD3
+author:              "Tatsuki-I"
+maintainer:          "tatsuki.devel@gmail.com"
+copyright:           "2019 Tatsuki-I"
+
+extra-source-files:
+- README.md
+- ChangeLog.md
+
+# Metadata used when publishing your package
+# synopsis:            Short description of your package
+# category:            Development
+
+# To avoid duplicated efforts in documentation and dealing with the
+# complications of embedding Haddock markup inside cabal files, it is
+# common to point users to the README.md file.
+description:         Please see the README on GitHub at <https://github.com/Tatsuki-I/TreeRandom#readme>
+
+dependencies:
+- base >= 4.7 && < 5
+- repa
+- array
+- random
+- cborg
+- bit-stream
+- bytestring
+- primitive
+- vector
+- repa-algorithms
+- parallel
+
+library:
+  source-dirs: src
+
+executables:
+  TreeRandom:
+    main:                Main.hs
+    source-dirs:         app
+    ghc-options:
+    - -threaded
+    - -rtsopts
+    - -with-rtsopts=-N
+    dependencies:
+    - TreeRandom
+  trs:
+    main:                Main.hs
+    source-dirs:         app/TreeRandom/serial
+    ghc-options:
+    - -threaded
+    - -rtsopts
+    - -with-rtsopts=-N
+    dependencies:
+    - TreeRandom
+  trp:
+    main:                Main.hs
+    source-dirs:         app/TreeRandom/parallel
+    ghc-options:
+    - -threaded
+    - -rtsopts
+    - -with-rtsopts=-N
+    dependencies:
+    - TreeRandom
+
+tests:
+  TreeRandom-test:
+    main:                Spec.hs
+    source-dirs:         test
+    ghc-options:
+    - -threaded
+    - -rtsopts
+    - -with-rtsopts=-N
+    dependencies:
+    - TreeRandom
