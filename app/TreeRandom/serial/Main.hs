@@ -1,9 +1,8 @@
 module Main where
 
-import qualified System.Random.MT as MT
-import qualified System.Random    as R
-import           System.Environment (getArgs)
-import           Data.ByteString
+import System.Random.TreeRandom
+import System.Environment (getArgs)
 
 main    :: IO ()
-main =  do print "Hello"
+main =  do [arg] <- getArgs
+           print $ (toList (tr (read arg) 2) (read arg)) !! (read arg - 1)
